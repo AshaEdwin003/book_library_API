@@ -40,10 +40,10 @@ The API must:
 
 ### Architecture
 
-The service follows a layered architecture:
+The service follows a layered architecture, with Streamlit acting as a separate presentation client:
 
 ```text
-HTTP client
+Streamlit UI (streamlit_app.py)
     |
     v
 FastAPI router (app/routers/books.py)
@@ -69,6 +69,9 @@ Responsibilities are intentionally separated:
 - `app/services/` contains database operations and business behavior.
 - `app/models/` defines the SQLAlchemy persistence model and genre enumeration.
 - `app/database.py` loads configuration and manages SQLAlchemy engine/session creation.
+- `streamlit_app.py` provides the user-facing library interface and calls the API using `API_BASE_URL`.
+
+The Streamlit frontend communicates with the API over HTTP and never accesses the database directly. This keeps the UI replaceable and ensures that validation and business behavior remain centralized in the API.
 
 ### Data model
 
@@ -109,7 +112,8 @@ The intended verification strategy is:
 3. Add API integration tests for every endpoint and important error path.
 4. Test pagination, filtering, sorting, partial updates, and empty results.
 5. Run a smoke test against the local server and inspect `/api/docs`.
-6. Verify database behavior against SQLite and the target production database before release.
+6. Start the Streamlit UI and verify that list, add, edit, filter, sort, and delete actions work through the API.
+7. Verify database behavior against SQLite and the target production database before release.
 
 ### Current quality status
 
@@ -141,4 +145,3 @@ Recommended next increments are:
 7. Add observability and API version/deprecation policies.
 
 Each increment should follow the same cycle: define acceptance criteria, implement in the appropriate layer, add tests, update the API documentation, and review operational impact.
-
