@@ -12,7 +12,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000/api/v1").rstrip("/")
+if "API_BASE_URL" in st.secrets:
+    API_BASE_URL = st.secrets["API_BASE_URL"].rstrip("/")
+else:
+    API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000/api/v1").rstrip("/")
+
+# API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000/api/v1").rstrip("/")
 BOOKS_ENDPOINT = f"{API_BASE_URL}/books/"
 REQUEST_TIMEOUT_SECONDS = 10
 GENRES = [
