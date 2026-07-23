@@ -81,6 +81,10 @@ The service is available at `http://127.0.0.1:8000`.
 - ReDoc: `http://127.0.0.1:8000/api/redoc`
 - Health check: `http://127.0.0.1:8000/`
 
+### Live API documentation
+
+The deployed Swagger UI is available at [Book Library API Docs](https://book-library-api-three.vercel.app/api/docs#/).
+
 ## Running the Streamlit UI
 
 Start the FastAPI server first, then open a second terminal with the virtual environment activated:

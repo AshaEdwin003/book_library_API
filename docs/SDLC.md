@@ -93,6 +93,8 @@ Supported genres are `fiction`, `non_fiction`, `mystery`, `sci_fi`, `fantasy`, `
 
 The API uses resource-oriented endpoints under `/api/v1/books`:
 
+The deployed interactive API documentation is available at [Book Library API Docs](https://book-library-api-three.vercel.app/api/docs#/).
+
 | Method | Path | Purpose | Success |
 | --- | --- | --- | --- |
 | `GET` | `/api/v1/books/` | List books; supports `skip`, `limit`, `genre`, and `sort_by` | `200` |
