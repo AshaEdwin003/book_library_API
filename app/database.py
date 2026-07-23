@@ -8,11 +8,13 @@ load_dotenv()
 
 
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./media_library.db")
-
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, 
-    connect_args={"check_same_thread": False}  
+CONNECT_ARGS = (
+    {"check_same_thread": False}
+    if SQLALCHEMY_DATABASE_URL.startswith("sqlite")
+    else {}
 )
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args=CONNECT_ARGS)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

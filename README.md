@@ -65,7 +65,7 @@ Create a `.env` file in the project root if one does not exist:
 DATABASE_URL=sqlite:///./media_library.db
 ```
 
-Do not place credentials or production secrets in a committed `.env` file.
+For deployment, use a hosted PostgreSQL connection string from Neon or another database provider instead of SQLite. Do not place credentials or production secrets in a committed `.env` file.
 
 ## Running the API
 
